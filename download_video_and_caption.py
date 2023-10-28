@@ -9,7 +9,7 @@ os.makedirs(parent_path, exist_ok=True)
 p = Playlist(url)
 
 count = 0
-for video_url in p.video_urls[:51]:
+for video_url in p.video_urls:
     if count == 50:
         break
     count = count + 1
