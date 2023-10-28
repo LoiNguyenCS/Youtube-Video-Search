@@ -7,7 +7,12 @@ parent_path =  'D:/NJIT Courses\CS482 Data Mining\Data-Mining-Milestone-1'
 os.makedirs(parent_path, exist_ok=True)
 
 p = Playlist(url)
-for video_url in p.video_urls[19:51]:
+count = 0
+for video_url in p.video_urls:
+        if count == 50:
+		break
+	count = count + 1
+	
 	yt = YouTube(video_url)
 	if yt.age_restricted:
 		print(f"Skipping age-restricted video: {video.title}")
