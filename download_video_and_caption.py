@@ -9,10 +9,9 @@ os.makedirs(parent_path, exist_ok=True)
 p = Playlist(url)
 count = 0
 for video_url in p.video_urls:
-        if count == 50:
+  if count == 50:
 		break
 	count = count + 1
-	
 	yt = YouTube(video_url)
 	if yt.age_restricted:
 		print(f"Skipping age-restricted video: {video.title}")
