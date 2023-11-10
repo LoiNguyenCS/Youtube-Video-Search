@@ -7,7 +7,7 @@ import sys
 
 
 
-def split_video_into_frames(video_path, max_frames=25):
+def split_video_into_frames(video_path, max_frames=15):
     video_dir = os.path.dirname(video_path)
     output_folder = os.path.join(video_dir, "Frames")
     if not os.path.exists(output_folder):
@@ -103,7 +103,7 @@ def save_combined_embedding(combined_embedding, output_folder, video_path):
     np.save(output_path, combined_embedding)
 
 video_path = sys.argv[1]
-# split_video_into_frames(video_path)
+split_video_into_frames(video_path)
 frame_folder = os.path.join(os.path.dirname(video_path), "Frames")
 
 all_frames = load_frames_from_folder(frame_folder)
@@ -111,10 +111,10 @@ split_index = len(all_frames) // 2
 train_frames = all_frames[:split_index]
 test_frames = all_frames[split_index:]
 
-# autoencoder = train_autoencoder(train_frames, test_frames)
-# encoder = keras.Model(autoencoder.input, autoencoder.layers[1].output)
-# encoded_all_frames = encode_frames(encoder, all_frames)
-# save_encoded_frames(encoded_all_frames, frame_folder)
+autoencoder = train_autoencoder(train_frames, test_frames)
+encoder = keras.Model(autoencoder.input, autoencoder.layers[1].output)
+encoded_all_frames = encode_frames(encoder, all_frames)
+save_encoded_frames(encoded_all_frames, frame_folder)
 
 encoded_frames_folder = frame_folder
 encoded_all_frames = []
