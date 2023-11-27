@@ -34,11 +34,9 @@ def save_embedding_as_csv(embedded_text, output_path):
 pretrained_model = get_pretrained_model()
 for file_path in sys.argv[1:]:
     print(file_path)
-    file_path = sys.argv[1]
     file_as_text = extract_text_from_xml(file_path)
     embedded_text = embed_text(file_as_text, pretrained_model)
     output_directory = "TextEmbedding"
-    os.makedirs(output_directory, exist_ok=True)
 
     output_csv_path = os.path.join(
         output_directory, f"{os.path.basename(file_path)}_embedded.csv"
